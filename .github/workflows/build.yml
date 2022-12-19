@@ -1,0 +1,22 @@
+name: "⌛️ Build"
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 checkout
+        uses: actions/checkout@v3
+      - name: 🟢 node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17.9.0
+          registry-url: https://registry.npmjs.org
+      - name: 🟢 Install yarn
+        run: npm i yarn -g
+      - name: ⌛️ Build
+        run: yarn install --frozen-lockfile
